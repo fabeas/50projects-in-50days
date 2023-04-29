@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(4, 78, 43, 0.652);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+.btn { 
+    background-color: rgb(225, 191, 41);
+    border: 0;
+    border-radius: 5px;
+    margin:  1.5rem;
+    padding: 1rem 0 ;
+    width: 70px;
+    cursor: pointer;
+    font-size: 1 rem;
+}
+.btn:hover { 
+    opacity: 0.9;
+}
+.btn:active { 
+    transform: scale(0.98);
+    background-color: rgb(225, 190, 32);
+    color: rgb(225, 224, 162);
+}
