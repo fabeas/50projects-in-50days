@@ -3,7 +3,7 @@ let cards = document.querySelectorAll(".card")
 cards.forEach(card => {
     card.addEventListener("click", () => {
         removeActiveClass() 
-        card.classList.add('active')
+        card.classList.add("active")
     })
 
 })

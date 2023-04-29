@@ -5,7 +5,7 @@
     --right-btn-hover-color: rgb(48, 25, 8);
     --hover-width: 75%;
     --other-width: 25%;
-    --speed : 1000ms ; 
+    --speed: 1000ms;
 }
 
 
@@ -63,7 +63,7 @@ h1 {
     width: 50%;
     height: 100%;
     overflow: hidden;
-    
+
 }
 
 .split.left {
@@ -109,7 +109,7 @@ h1 {
 .split.right,
 .split.left,
 .split.left::before,
-.split.right::before { 
+.split.right::before {
     transition: all var(--speed) ease-in-out;
 }
 
@@ -132,14 +132,14 @@ h1 {
 }
 
 
-@media(max-width: 800px) { 
+@media(max-width: 800px) {
 
-    h1 { 
+    h1 {
         font-size: 2rem;
         top: 30%;
     }
 
-    .btn { 
+    .btn {
         padding: 1rem;
         width: 10rem;
     }
