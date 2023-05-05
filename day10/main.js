@@ -3,18 +3,18 @@ const jokeBtn = document.getElementById("jokeBtn")
 
 jokeBtn.addEventListener("click", generateJoke)
 
-generateJoke() 
+generateJoke()
 
 // AWAİT İLE BERABER ASENKRON KULLANIM
 
-async function generateJoke() { 
-    const config ={ 
-        headers: { 
-            Accept :"application/json",
+async function generateJoke() {
+    const config = {
+        headers: {
+            Accept: "application/json",
         }
     }
-    const res = await  fetch("https://icanhazdadjoke.com/",config)
-     
+    const res = await fetch("https://icanhazdadjoke.com/", config)
+
     const data = await res.json()
 
     jokeEl.innerHTML = data.joke
@@ -23,16 +23,16 @@ async function generateJoke() {
 
 //.THEN'Lİ KULLANIM
 
-// function generateJoke() { 
-//     const config = 
-//      { 
-//         headers: { 
+// function generateJoke() {
+//     const config =
+//      {
+//         headers: {
 //             "Accept" : "application/json"
 //         }
 //     }
 //     fetch("https://icanhazdadjoke.com/",config)
 //     .then((res) => res.json())
-//     .then((data) => { 
+//     .then((data) => {
 //         jokeEl.innerHTML = data.joke
 //     })
 // }
