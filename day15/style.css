@@ -1,9 +1,9 @@
-*{
+* {
     box-sizing: border-box;
 }
 
 body {
-    font-family: "Poppins" , sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: rgb(103, 79, 13);
     color: white;
     display: flex;
@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-.counter-container { 
+.counter-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,15 +23,15 @@ body {
     margin: 30px 50px;
 }
 
-.counter { 
+.counter {
     font-size: 50px;
     margin-top: 15px;
 }
 
 @media (max-width: 580px) {
-    body{
+    body {
         flex-direction: column;
     }
-   
-    
+
+
 }
