@@ -31,28 +31,28 @@ function highlightCups(idx) {
 function updateBigCup() {
 
     const fullCups = document.querySelectorAll
-    (".glass.active").length
+        (".glass.active").length
 
     const totalCups = smallCups.length
 
-    if(fullCups === 0) { 
+    if (fullCups === 0) {
         percentage.style.visibility = "hidden"
-        percentage.style.height= 0 
-    }else { 
+        percentage.style.height = 0
+    } else {
         percentage.style.visibility = "visible"
         percentage.style.height = `${fullCups / totalCups * 280}px`
         percentage.innerText = ` ${fullCups / totalCups * 100} %`
 
     }
 
-    if( fullCups === totalCups) { 
+    if (fullCups === totalCups) {
         remained.style.visibility = "hidden"
         remained.style.height = 0
-    } else { 
+    } else {
         remained.style.visibility = "visible"
-        liters.innerText = `${2- (250 * fullCups / 1000)}L`
+        liters.innerText = `${2 - (250 * fullCups / 1000)}L`
     }
 
-    
+
 
 }
