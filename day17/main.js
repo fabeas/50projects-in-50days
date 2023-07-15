@@ -1,74 +1,64 @@
-const API_URL = "https://api.themoviedb.org/3/movie/popular?api_key=343a2b66efd83955817aadb652a0bc93&page=1"
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280"
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie/popular?api_key=343a2b66efd83955817aadb652a0bc93&query="'
+const poke_container = document.getElementById('poke-container')
+const pokemon_count = 150
+const colors = {
+    fire: '#FDDFDF',
+    grass: '#DEFDE0',
+	electric: '#FCF7DE',
+	water: '#DEF3FD',
+	ground: '#f4e7da',
+	rock: '#d5d5d4',
+	fairy: '#fceaff',
+	poison: '#98d7a5',
+	bug: '#f8d5a3',
+	dragon: '#97b3e6',
+	psychic: '#eaeda1',
+	flying: '#F5F5F5',
+	fighting: '#E6E0D4',
+	normal: '#F5F5F5'
+}
 
-const main = document.getElementById("main")
-const form = document.getElementById("form")
-const search = document.getElementById("search")
+const main_types = Object.keys(colors)
 
+const fetchPokemons = async () => {
+    for(let i = 1; i <= pokemon_count; i++) {
+        await getPokemon(i)
+    }
+}
 
-getMovies(API_URL)
-
-async function getMovies(url) {
+const getPokemon = async (id) => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`
     const res = await fetch(url)
     const data = await res.json()
-
-    showMovies(data.results)
+    createPokemonCard(data)
 }
 
-function showMovies(movies) {
-    main.innerHTML = ""
+const createPokemonCard = (pokemon) => {
+    const pokemonEl = document.createElement('div')
+    pokemonEl.classList.add('pokemon')
 
-    movies.forEach((movie) => {
-        const { title, poster_path, vote_average,
-            overview } = movie
+    const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1)
+    const id = pokemon.id.toString().padStart(3, '0')
 
-        const moviEl = document.createElement("div")
-        moviEl.classList.add("movie")
+    const poke_types = pokemon.types.map(type => type.type.name)
+    const type = main_types.find(type => poke_types.indexOf(type) > -1)
+    const color = colors[type]
 
-        moviEl.innerHTML = `
-            
-            
-            <img src="${IMG_PATH + poster_path}" alt="${title}">
+    pokemonEl.style.backgroundColor = color
 
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${getClassByRate
-                (vote_average)}">${vote_average}</span>
-            </div>
-            <div class="overview">
-                <h3>Overview</h3>
-                ${overview}
-            </div>
-       
-            
-            `
+    const pokemonInnerHTML = `
+    <div class="img-container">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">
+    </div>
+    <div class="info">
+        <span class="number">#${id}</span>
+        <h3 class="name">${name}</h3>
+        <small class="type">Type: <span>${type}</span> </small>
+    </div>
+    `
 
-        main.appendChild(moviEl)
-    })
+    pokemonEl.innerHTML = pokemonInnerHTML
+
+    poke_container.appendChild(pokemonEl)
 }
 
-
-function getClassByRate(vote) {
-    if (vote >= 8) {
-        return "green"
-    } else if (vote >= 5) {
-        return "orange"
-    } else {
-        return "red"
-    }
-
-}
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault
-
-    const searchTerm = search.value
-
-    if (searchTerm && searchTerm !== "") {
-        getMovies(SEARCH_API + searchTerm)
-        search.value = ""
-    } else {
-        window.location.reload()
-    }
-})
+fetchPokemons()
